@@ -1,0 +1,15 @@
+---
+- name: Main Playbook
+  hosts: webserver
+  become: yes
+
+  vars:
+    my_var: "Hello"
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Print Value
+      debug:
+        var: my_var

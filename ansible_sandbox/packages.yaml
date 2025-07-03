@@ -1,0 +1,9 @@
+- name: Ngnix install
+  apt:
+    name: nginx
+    state: present
+
+- name: redhat nginx install
+  yum:
+    name: nginx
+    state: present

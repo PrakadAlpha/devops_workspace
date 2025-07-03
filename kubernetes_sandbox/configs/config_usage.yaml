@@ -1,0 +1,15 @@
+env:
+  - name: LOG_LEVEL
+    valueFrom:
+      configMapKeyRef:
+        name: config-name
+        key: LOG_LEVEL
+
+
+
+envFrom:
+  - configMapRef:
+      name: app-config
+
+
+

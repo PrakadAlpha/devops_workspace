@@ -1,0 +1,24 @@
+- name: copy file
+  copy:
+    src: '/tmp/sample.txt'
+    dest: '/usr/sample.txt'
+    owner: 'root'
+    group: 'root'
+    mode: '644'
+
+- name: deploy config template
+  template:
+    src: config.j2
+    dest: /usr/config.properties
+
+- name: Enable nginx
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Create user
+  user:
+    name: deploy
+    state: present
+    groups: sudo

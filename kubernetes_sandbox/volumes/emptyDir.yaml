@@ -1,0 +1,7 @@
+volumesMounts:
+  - name: cache
+    mountPath: /cache
+
+volumes:
+  - name: cache
+    emptyDir: {}

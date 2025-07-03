@@ -1,0 +1,2 @@
+docker run -v mydata:/data alpine
+docker run -v $(pwd)/logs:/data alpine

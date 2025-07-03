@@ -1,0 +1,13 @@
+volumeMounts:
+  - name: projected-val
+    mountPath: /etc/combined
+
+volumes:
+  - name: projected-val
+    projected:
+      sources:
+        - configMap:
+            name: app-config
+        - secret:
+            name: db-secret
+

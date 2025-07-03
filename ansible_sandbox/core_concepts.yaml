@@ -1,0 +1,33 @@
+---
+# Variable Register
+
+- name: Run command
+  shell: uptime
+  register: uptime_output
+
+- name: Show output
+  debug:
+    msg: "{{ uptime_output.stdout }}"
+
+---
+# Handlers & Tasks
+
+tasks:
+  - name: Update config file
+    copy:
+      src: newconfig.conf
+      dest: /etc/myapp/config.conf
+    notify: Restart myapp
+
+handlers:
+  - name: Restart myapp
+    service:
+      name: myapp
+      state: restarted
+
+# Error Handling
+---
+
+- name: Try command but ignore failure
+  shell: some_command
+  ignore_errors: yes

@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: DaemonSet
+metadata:
+  name: log-agent
+spec:
+  selector:
+    matchLabels:
+      name: log-agent
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        name: log-agent
+    spec:
+      nodeSelector:
+        node-role.kuberentes.io/infra: "true"
+      tolerations:
+        - key: "dedicated"
+          operator: "Equal"
+          value: "infra"
+          effect: "NoSchedule"
+      containers:
+        - name: fluentd
+          image: fluentd/fluentd:v1.16
+          resources:
+            limits:
+              memory: "200Mi"
+              cpu: "0.5"
+          volumeMounts:
+            - name: varlog
+              mountPath: /var/log
+
+      volumes:
+        - name: varlog
+          hostPath:
+            path: /var/log

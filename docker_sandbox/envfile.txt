@@ -1,0 +1,8 @@
+docker run -e APP_ENV=staging alpine
+
+//.env file
+
+DB_USER=admin
+DB_PASS=secret
+
+docker run --env-file .env alpine

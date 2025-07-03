@@ -1,0 +1,7 @@
+volumeMounts:
+  - name: config-volume
+    mountPaths: /app/config
+volumes:
+  - name: config-volume
+    configMap:
+      name: app-config

@@ -1,0 +1,10 @@
+volumeMounts:
+  - name: host-logs
+    mountPath: /mnt/host/log
+
+volumes:
+  - name: host-logs
+    hostPath:
+      path: /path/log
+      type: Directory
+

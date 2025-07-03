@@ -1,0 +1,14 @@
+- name: Install multiple package
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - nginx
+    - git
+    - curl
+
+- name: Install Apache only on Debian
+  apt:
+    name: apache2
+    state: present
+  when: ansible_os_family == "Debian"

@@ -1,0 +1,3 @@
+FROM alpine
+ENV APP_ENV=production
+CMD ["sh", "-c", "echo App running in $APP_ENV"]

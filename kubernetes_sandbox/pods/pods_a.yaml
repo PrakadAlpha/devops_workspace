@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Pod
+metadata:
+  name: advanced-pod
+spec:
+  containers:
+    - name: app
+      image: busybox
+      command: ["sh", "-c"]
+      args: ["echo Hello && echo sleep 3600"]
+      env:
+        - name: APP_ENV
+          value: "production"
+      volumeMounts:
+        - name: logs
+          mountPath: "/var/log/app"
+  volumes:
+    - name: logs
+      emptyDir: {}

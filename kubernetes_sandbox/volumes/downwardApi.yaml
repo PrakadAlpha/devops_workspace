@@ -1,0 +1,11 @@
+volumes:
+  - name: meta
+    downwardAPI:
+      items:
+        - path: "pod-name"
+          fieldRef:
+            fieldPath: metadata.name
+
+volumeMounts:
+  - name: meta
+    mountPath: /etc/meta
