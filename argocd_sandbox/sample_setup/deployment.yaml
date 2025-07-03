@@ -1,7 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: argo-test
+  name: nginx-app
+  namespace: default
 spec:
   replicas: 2
   selector:
