@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-prod-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/PrakadAlpha/devops_workspace.git
+    path: helm_sandbox/chart
+    targetRevision: main
+    helm:
+      valueFiles:
+        - values-prod.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
